@@ -5,6 +5,9 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+//解决跨域
+const cors = require('koa2-cors')
+app.use(cors())
 
 const mongoConnect = require('./db')
 //连接数据库
