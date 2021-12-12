@@ -6,6 +6,10 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
+const mongoConnect = require('./db')
+//连接数据库
+mongoConnect()
+
 const index = require('./routes/index')
 const users = require('./routes/users')
 

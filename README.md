@@ -125,3 +125,20 @@ npm install
 ```
 
 项目目录如下：![image-20211212144900158](README.images/image-20211212144900158.png)
+
+安装mongoose
+
+```
+ cnpm i mongoose --save
+```
+
+新建db目录在index.js中配置数据库连接
+
+在app.js中引用
+
+```
+const mongoConnect = require('./db')
+//连接数据库
+mongoConnect()
+```
+
