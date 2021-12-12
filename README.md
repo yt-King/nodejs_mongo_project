@@ -83,3 +83,45 @@ strPares("hello")
 文档：http://nodejs.cn/api/http.html
 
 示例：moduleTest/httpAPI.js
+
+## 3.Koa2框架——Node.js web server框架
+
+### 3.1koa2安装
+
+```
+npm install koa --save
+```
+
+### 3.2使用脚手架创建koa2项目
+
+```
+koa2 <项目名>
+```
+
+### 3.3koa中间件
+
+<img src="README.images/image-20211211232013138.png" alt="image-20211211232013138" style="zoom:80%;" />
+
+输出顺序：1 -> 2 -> 3 -> 2-1 -> 1-1   (洋葱圈模型)
+
+koa-router实现路由：
+
+安装——cnpm i koa-router --save
+
+![image-20211211232938186](README.images/image-20211211232938186.png)
+
+### 3.4参数获取
+
+获取params里的参数：let {属性名} = ctx.request.query
+
+获取body里（json格式）的参数（需要安装koa-bodyparser才可以获取正确的body）：let {username,pwd} = ctx.request.body
+
+## 4.项目初始化
+
+```
+koa2 koaPoject
+cd koaPoject
+npm install
+```
+
+项目目录如下：![image-20211212144900158](README.images/image-20211212144900158.png)
