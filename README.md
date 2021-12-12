@@ -118,6 +118,10 @@ koa-router实现路由：
 
 ## 4.项目初始化
 
+后端采用nodejs+koa框架开发API接口
+
+先初始化koa项目
+
 ```
 koa2 koaPoject
 cd koaPoject
@@ -136,9 +140,108 @@ npm install
 
 在app.js中引用
 
-```
+```javascript
 const mongoConnect = require('./db')
 //连接数据库
 mongoConnect()
 ```
+
+在models下的user.js中创建user模板
+
+```javascript
+const mongoose = require('mongoose')
+//创建模板
+const userSchema = new mongoose.Schema({
+    username: String,
+    pwd: String
+})
+
+const user = mongoose.model('users', userSchema)
+
+module.exports = {
+    user
+}
+```
+
+在routes下的users.js中添加路由
+
+```javascript
+//添加系统用户
+router.post('/add',userContro.userAdd)
+
+//修改系统用户
+router.post('/update', userContro.userUpdate)
+
+//删除系统用户
+router.post('/del', userContro.userDel)
+
+//查询所有系统用户
+router.post('/findall', userContro.userFindAll)
+
+//查询单个系统用户
+router.post('/find', userContro.userFind)
+```
+
+在controller层编写对应操作，完成后端api开发
+
+## 5.前端搭建
+
+### 采用vue-cli构建前端项目
+
+```
+vue create web
+```
+
+选择自定义创建
+
+![image-20211212204818240](README.images/image-20211212204818240.png)
+
+![image-20211212204910142](README.images/image-20211212204910142.png)
+
+![image-20211212204935702](README.images/image-20211212204935702.png)
+
+构建完后运行即可
+
+```
+cd web
+npm run serve
+```
+
+### 组件化开发
+
+选择Element UI 组件库
+
+安装： npm i element-ui -S
+
+完整引入——在 main.js 中写入以下内容：
+
+```javascript
+import Vue from 'vue';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import App from './App.vue';
+
+Vue.use(ElementUI);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
+
+### axios安装
+
+```
+cnpm i axios --save
+```
+
+后台项目中—— cnpm i koa2-cors --save 安装cors，在app.js中配置cors
+
+```JavaScript
+//解决跨域
+const cors = require('koa2-cors')
+app.use(cors())
+```
+
+封装axios
 
