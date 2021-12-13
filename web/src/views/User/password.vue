@@ -1,6 +1,6 @@
 <template>
   <div>
-      登录页面
+      修改密码
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-      登录页面
+      点赞管理
   </div>
 </template>
 

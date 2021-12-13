@@ -1,6 +1,6 @@
 <template>
   <div>
-      登录页面
+      评论管理
   </div>
 </template>
 

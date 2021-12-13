@@ -1,6 +1,6 @@
 <template>
   <div>
-      登录页面
+      发布文章
   </div>
 </template>
 
