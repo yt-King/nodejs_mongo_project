@@ -1,6 +1,6 @@
 <template>
   <div>
-      登录页面
+      个人资料
   </div>
 </template>
 
