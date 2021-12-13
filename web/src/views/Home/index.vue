@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header>
-        <div class="sys-title">简书后台管理系统</div>
+        <div class="sys-title">ytKing的后台管理系统</div>
         <div class="header-right">
             <el-link :underline="false" style="margin-right:20px;">网站首页</el-link>
             <el-avatar size="small" src=""></el-avatar>
