@@ -1,21 +1,26 @@
+const {
+  login,
+  reg,
+  verify,
+  updatePwd,
+  updatePersonal
+} = require('../controller/users')
 const router = require('koa-router')()
-const { user } = require('../models/user')
-const userContro = require('../controller/user')
 router.prefix('/users')
 
-//添加系统用户
-router.post('/add',userContro.userAdd)
+//用户登录
+router.post('/login', login)
 
-//修改系统用户
-router.post('/update', userContro.userUpdate)
+//用户注册
+router.post('/reg', reg)
 
-//删除系统用户
-router.post('/del', userContro.userDel)
+//验证用户登录
+router.post('/verify', verify)
 
-//查询所有系统用户
-router.post('/findall', userContro.userFindAll)
+//修改密码
+router.post('/update/pwd', updatePwd)
 
-//查询单个系统用户
-router.post('/find', userContro.userFind)
+//修改用户个人资料
+router.post('/update/personal', updatePersonal)
 
 module.exports = router

@@ -12,7 +12,7 @@ const login = async ctx => {
             let token = jwt.sign({
                 username: rel.username,
                 _id: rel._id
-            },'jianshu-server-jwt',{
+            },'ytking-server-jwt',{
                 expiresIn: 3600 * 24 * 7
             })
         
@@ -85,7 +85,7 @@ const verify = async ctx => {
     token = token.replace('Bearer ','')
 
     try{
-        let result = jwt.verify(token, 'jianshu-server-jwt')
+        let result = jwt.verify(token, 'ytking-server-jwt')
         await Users.findOne({_id:result._id}).then(rel=>{
             if(rel){
                 ctx.body = {
