@@ -5,19 +5,20 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-//解决跨域
+const MongoConnect = require('./db')
+const koajwt = require('koa-jwt')
 const cors = require('koa2-cors')
-app.use(cors())
-
-const mongoConnect = require('./db')
-//连接数据库
-mongoConnect()
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+const upload = require('./routes/upload')
+const article = require('./routes/article')
+const comment = require('./routes/comment')
+const fans = require('./routes/fans')
 
 // error handler
 onerror(app)
+MongoConnect()
 
 // middlewares
 app.use(bodyparser({
@@ -26,9 +27,16 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
-
+//解决跨域
+app.use(cors())
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
+  extension: 'ejs'
+}))
+
+app.use(koajwt({
+  secret: 'ytking-server-jwt'
+}).unless({
+  path: [/^\/users\/login/,/^\/users\/reg/]
 }))
 
 // logger
@@ -42,6 +50,10 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
+app.use(upload.routes(), upload.allowedMethods())
+app.use(article.routes(), article.allowedMethods())
+app.use(comment.routes(), comment.allowedMethods())
+app.use(fans.routes(), fans.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {
