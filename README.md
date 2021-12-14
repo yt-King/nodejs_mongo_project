@@ -231,9 +231,13 @@ new Vue({
 
 ### axios安装
 
+前台：
+
 ```
 cnpm i axios --save
 ```
+
+前台封装：web/src/http/index.js
 
 后台项目中—— cnpm i koa2-cors --save 安装cors，在app.js中配置cors
 
@@ -243,5 +247,5 @@ const cors = require('koa2-cors')
 app.use(cors())
 ```
 
-封装axios
+
 

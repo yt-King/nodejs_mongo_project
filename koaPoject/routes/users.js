@@ -15,7 +15,7 @@ router.post('/login', login)
 router.post('/reg', reg)
 
 //验证用户登录
-router.post('/verify', verify)
+router.get('/verify', verify)
 
 //修改密码
 router.post('/update/pwd', updatePwd)

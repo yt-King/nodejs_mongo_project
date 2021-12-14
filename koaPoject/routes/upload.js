@@ -13,8 +13,7 @@ var upload = multer({
 			let year = date.getFullYear();
 			let month = (date.getMonth() + 1).toString().padStart(2, '0');
 			let day = date.getDate();
-			//文件保存在当前月份的文件夹
-			let dir = "./public/uploads/" + year + month;
+			let dir = "./public/uploads/" + year + month ;
 
 			//判断目录是否存在，没有则创建
 			if (!fs.existsSync(dir)) {
@@ -36,8 +35,7 @@ var upload = multer({
 })
 
 //上传图片
-router.post('/img', upload.single("file"), async ctx => {
-	//返回可访问url路径
+router.post('/img', upload.single("myfile"), async ctx => {
     let path = ctx.req.file.path
     path = ctx.origin + '' + path.replace('public','')
 	ctx.body = {

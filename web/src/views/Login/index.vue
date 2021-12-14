@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-card>
-      <div class="login-title">ytKing的后台管理系统</div>
+      <div class="login-title">简书后台管理系统</div>
       <el-form :model="form" status-icon :rules="rules" ref="ruleForm">
         <el-form-item prop="username">
           <el-input
@@ -80,12 +80,12 @@ export default {
               pwd: this.form.pwd,
             },
           }).then((res) => {
-            // if (res.code === 200 && this.state) {
+            if (res.code === 200 && this.state) {
               localStorage.token = res.token;
               this.$router.push({
                 path: "/admin",
               });
-            // }
+            }
             this.$message({
               message: res.msg,
               type: res.code === 200 ? "success" : "error",
