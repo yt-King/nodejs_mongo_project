@@ -6,7 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const MongoConnect = require('./db')
-const koajwt = require('koa-jwt')
+// const koajwt = require('koa-jwt')
 const cors = require('koa2-cors')
 
 const index = require('./routes/index')
@@ -27,17 +27,16 @@ app.use(bodyparser({
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
-//解决跨域
 app.use(cors())
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
 
-app.use(koajwt({
-  secret: 'ytking-server-jwt'
-}).unless({
-  path: [/^\/users\/login/,/^\/users\/reg/]
-}))
+// app.use(koajwt({
+//   secret: 'ytking-server-jwt'
+// }).unless({
+//   path: [/^\/users\/login/,/^\/users\/reg/]
+// }))
 
 // logger
 app.use(async (ctx, next) => {

@@ -15,10 +15,12 @@ instance.interceptors.request.use(config =>{
 
 //响应拦截
 instance.interceptors.response.use(res =>{
-    //响应拦截要处理的内容
-    return res
-},err =>{
-    console.error('响应失败',err)
+    //请求成功对响应数据做处理
+    return res //该返回对象会传到请求方法的响应对象中
+}, err => {
+    // 响应错误处理
+    // location.href = '/login'
+    return Promise.reject(err);
 })
 
 /**
