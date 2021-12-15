@@ -4,32 +4,32 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  // {
+  //   path: '/',
+  //   name: 'Web',
+  //   component: () => import('@/views/Web'),
+  //   redirect: '/article',
+  //   children: [
+  //     {
+  //       path: '/article',
+  //       name: 'ArticleList',
+  //       component: () => import('@/views/Web/list.vue')
+  //     },
+  //     {
+  //       path: '/article/:id',
+  //       name: 'Article',
+  //       component: () => import('@/views/Web/article.vue')
+  //     }
+  //   ]
+  // },
   {
     path: '/',
-    name: 'Web',
-    component: () => import('@/views/Web'),
-    redirect: '/article',
-    children: [
-      {
-        path: '/article',
-        name: 'ArticleList',
-        component: () => import('@/views/Web/list.vue')
-      },
-      {
-        path: '/article/:id',
-        name: 'Article',
-        component: () => import('@/views/Web/article.vue')
-      }
-    ]
-  },
-  {
-    path: '/admin',
     name: 'Home',
     component: () => import('@/views/Home'),
-    redirect: '/admin/users/personal',
+    redirect: '/users/personal',
     children: [
       {
-        path: '/admin/users/personal',
+        path: '/users/personal',
         name: 'UserPersonal',
         component: () => import('@/views/User/personal.vue'),
         meta: {
@@ -37,7 +37,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/users/password',
+        path: '/users/password',
         name: 'UserPassword',
         component: () => import('@/views/User/password.vue'),
         meta: {
@@ -45,7 +45,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/article',
+        path: '/article',
         name: 'AdminArticle',
         component: () => import('@/views/Article'),
         meta: {
@@ -53,7 +53,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/article/add',
+        path: '/article/add',
         name: 'ArticleAdd',
         component: () => import('@/views/Article/add.vue'),
         meta: {
@@ -61,7 +61,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/article/update',
+        path: '/article/update',
         name: 'ArticleUpdate',
         component: () => import('@/views/Article/update.vue'),
         meta: {
@@ -69,7 +69,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/comment',
+        path: '/comment',
         name: 'Comment',
         component: () => import('@/views/Comment'),
         meta: {
@@ -77,7 +77,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/fans',
+        path: '/fans',
         name: 'Fans',
         component: () => import('@/views/Fans'),
         meta: {
@@ -85,7 +85,7 @@ const routes = [
         }
       },
       {
-        path: '/admin/star',
+        path: '/star',
         name: 'Star',
         component: () => import('@/views/Star'),
         meta: {

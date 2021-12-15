@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <el-card>
-      <div class="login-title">简书后台管理系统</div>
+      <div class="login-title">ytKing的后台管理系统</div>
       <el-form :model="form" status-icon :rules="rules" ref="ruleForm">
         <el-form-item prop="username">
           <el-input
@@ -83,7 +83,7 @@ export default {
             if (res.code === 200 && this.state) {
               localStorage.token = res.token;
               this.$router.push({
-                path: "/admin",
+                path: "/",
               });
             }
             this.$message({
@@ -110,7 +110,7 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background: url("../../assets/bg.gif") no-repeat;
+  background: url("../../assets/bg.jpg") no-repeat;
   background-size: 100% 100%;
   display: flex;
   justify-content: center;

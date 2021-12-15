@@ -5,7 +5,7 @@
         <div class="avatar-div">
           <img v-show="form.avatar" :src="form.avatar" class="small-img">
           <el-upload
-            action="http://localhost:3000/upload/img"
+            action="http://150.158.28.238:3000/upload/img"
             name="myfile"
             :headers="uploadHeader"
             :show-file-list="false"

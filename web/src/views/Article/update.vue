@@ -55,7 +55,7 @@ export default {
     this.editor = new Editor('#editor')
 
     //配置上传图片的接口地址
-    this.editor.config.uploadImgServer = `http://localhost:3000/upload/editor/img`
+    this.editor.config.uploadImgServer = `http://150.158.28.238:3000/upload/editor/img`
     this.editor.config.uploadFileName = 'editorFile'
     this.editor.config.uploadImgHeaders = {
       authorization: "Bearer " + localStorage.token

@@ -58,7 +58,7 @@ export default {
     },
     update(row){
       this.$router.push({
-        path: '/admin/article/update',
+        path: '/article/update',
         query: {
           id: row.id
         }
