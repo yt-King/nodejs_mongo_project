@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header>
-        <div class="sys-title">简书后台管理系统</div>
+        <div class="sys-title">ytking的后台管理系统</div>
         <div class="header-right">
             <el-link :underline="false" @click="goWeb" style="margin-right:20px;">网站首页</el-link>
             <el-avatar size="small" :src="$store.state.user.avatar"></el-avatar>
@@ -48,12 +48,12 @@
               <span>粉丝管理</span>
             </template>
           </el-menu-item>
-          <el-menu-item index="/admin/star">
+          <!-- <el-menu-item index="/admin/star">
             <template slot="title">
               <i class="el-icon-thumb"></i>
               <span>点赞管理</span>
             </template>
-          </el-menu-item>
+          </el-menu-item> -->
         </el-menu>
       </el-aside>
       <el-main>
