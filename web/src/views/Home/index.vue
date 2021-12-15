@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-header>
-        <div class="sys-title">YtKing的后台管理系统</div>
+        <div class="sys-title">简书后台管理系统</div>
         <div class="header-right">
             <el-link :underline="false" @click="goWeb" style="margin-right:20px;">网站首页</el-link>
             <el-avatar size="small" :src="$store.state.user.avatar"></el-avatar>
