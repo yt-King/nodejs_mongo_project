@@ -1,5 +1,11 @@
 # nodejs_mongo_project
 
+## 写在最前：如何使用dockfile部署
+
+dockerfile以编写完成，前后端分离，前端在vueDocker文件夹，后端在nodeDocker文件夹，只需要将这两个文件夹放到服务器上通过build生成镜像即可
+
+需要注意的是：vueDocker中的dist需要在web文件夹中build生成，生成前要用自己的服务器ip替换掉我的，nodeDocker中的node文件夹同理需要替换ip
+
 ## 1.初始化项目
 
 ```
