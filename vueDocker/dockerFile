@@ -1,0 +1,6 @@
+FROM nginx
+MAINTAINER ytKing
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY dist /usr/local/src/dist
+EXPOSE 80
+
