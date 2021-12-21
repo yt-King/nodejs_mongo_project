@@ -1,10 +1,234 @@
 # nodejs_mongo_project
 
-## 写在最前：如何使用dockfile部署
+## 1.项目设计部分
 
-dockerfile以编写完成，前后端分离，前端在vueDocker文件夹，后端在nodeDocker文件夹，只需要将这两个文件夹放到服务器上通过build生成镜像即可
+### 1）项目总体构成
 
-需要注意的是：vueDocker中的dist需要在web文件夹中build生成，生成前要用自己的服务器ip替换掉我的，nodeDocker中的node文件夹同理需要替换ip
+运用koa框架搭建nodejs后台提供API接口，vue框架搭建前台调用后台接口，数据库采用mongodb，页面设计采用Element UI，采用jwt验证用户登录，最终实现个人博客的后台管理系统。
+
+### 2）引入的包在项目中的作用相关说明
+
+前台引用：
+
+>  "axios": "^0.21.1",
+>
+>  "core-js": "^3.6.5",
+>
+>  "element-ui": "^2.15.1",
+>
+>  "vue": "^2.6.11",
+>
+>  "vue-router": "^3.2.0",
+>
+>  "vuex": "^3.4.0",
+>
+>  "vuex-persistedstate": "^4.0.0-beta.3",
+>
+>  "wangeditor": "^4.6.17"
+
+后台引用：
+
+>"debug": "^4.1.1",
+>
+>  "ejs": "~2.3.3",
+>
+>  "jsonwebtoken": "^8.5.1",
+>
+>  "koa": "^2.7.0",
+>
+>  "koa-bodyparser": "^4.2.1",
+>
+>  "koa-convert": "^1.2.0",
+>
+>  "koa-json": "^2.0.2",
+>
+>  "koa-jwt": "^4.0.1",
+>
+>  "koa-logger": "^3.2.0",
+>
+>  "koa-multer": "^1.0.2",
+>
+>  "koa-onerror": "^4.1.0",
+>
+>  "koa-router": "^7.4.0",
+>
+>  "koa-static": "^5.0.0",
+>
+>  "koa-views": "^6.2.0",
+>
+>  "koa2-cors": "^2.0.6",
+>
+>  "mongoose": "^5.12.7"
+
+### 3）项目目录结构和各个部分的说明
+
+```ruby
+nodejs_mongo_project
+├─ .gitignore
+├─ .vscode
+│  └─ settings.json
+├─ koaPoject   #后台modejs项目文件夹
+│  ├─ app.js
+│  ├─ bin
+│  │  └─ www
+│  ├─ controller
+│  │  ├─ article.js  #文章操作
+│  │  ├─ comment.js  #评论操作
+│  │  ├─ fans.js     #粉丝操作
+│  │  └─ users.js    #用户操作
+│  ├─ db
+│  │  └─ index.js    #数据库连接
+│  ├─ model
+│  │  ├─ article.js #文章实体类
+│  │  ├─ comment.js #评论实体类
+│  │  ├─ fans.js   #粉丝实体类
+│  │  └─ users.js  #用户实体类
+│  ├─ package-lock.json
+│  ├─ package.json
+│  ├─ public
+│  │  ├─ images
+│  │  ├─ javascripts
+│  │  ├─ stylesheets
+│  │  │  └─ style.css
+│  │  └─ uploads   #用户头像保存文件夹
+│  │     └─ 202112
+│  │        └─ myfile-1639487853782.jpg
+│  ├─ routes
+│  │  ├─ article.js   #文章操作
+│  │  ├─ comment.js   #评论操作
+│  │  ├─ fans.js     #粉丝操作
+│  │  ├─ index.js    #首页操作
+│  │  ├─ upload.js    #上传操作
+│  │  └─ users.js     #用户操作
+│  └─ views
+│     ├─ error.ejs
+│     └─ index.ejs
+├─ moduleTest     #nodejs模块测试
+│  ├─ abc.txt
+│  ├─ bufferAPI.js  #buffer模块测试
+│  ├─ eventAPI.js   #evecnt模块测试
+│  ├─ fsAPI.js      #文件模块测试
+│  ├─ httpAPI.js    #模块测试
+│  ├─ index.html
+│  ├─ new.txt
+│  └─ pathAPI.js    #路径模块测试
+├─ nodeDocker      #后台dockerfile部署文件
+│  ├─ Dockerfile    #dockerfile
+│  └─ node          #dockerfile部署所需文件
+├─ README.md
+├─ vueDocker       #前台dockerfile部署文件  
+│  ├─ dist		   #vue项目打包
+│  ├─ Dockerfile    #dockerfile
+│  └─ nginx.conf    #nginx配置文件，用于生成dockerfile是替换原有的
+└─ web   #前端vue框架项目
+   ├─ .gitignore
+   ├─ babel.config.js
+   ├─ dist   #打包生成文件
+   │  ├─ css
+   │  ├─ favicon.ico
+   │  ├─ fonts
+   │  ├─ img
+   │  │  └─ bg.8647e6e2.jpg
+   │  ├─ index.html
+   │  └─ js
+   ├─ package-lock.json
+   ├─ package.json
+   ├─ public
+   │  ├─ favicon.ico
+   │  └─ index.html
+   ├─ README.md
+   └─ src
+      ├─ App.vue
+      ├─ assets
+      │  ├─ bg.gif
+      │  ├─ bg.jpg
+      │  └─ logo.png
+      ├─ components
+      ├─ http  
+      │  └─ index.js  #axios封装
+      ├─ main.js
+      ├─ router  #路由划分
+      │  ├─ beforeEach.js
+      │  └─ index.js
+      ├─ store
+      │  └─ index.js
+      └─ views
+         ├─ Article #文章页面
+         │  ├─ add.vue
+         │  ├─ index.vue
+         │  └─ update.vue
+         ├─ Comment #评论页面
+         │  └─ index.vue
+         ├─ Fans  #粉丝页面
+         │  └─ index.vue
+         ├─ Home  #主界面
+         │  └─ index.vue
+         ├─ Login  #登录页面
+         │  └─ index.vue
+         ├─ Star  #收藏页面
+         │  └─ index.vue
+         ├─ User  #用户页面
+         │  ├─ password.vue
+         │  └─ personal.vue
+         └─ Web  
+            ├─ article.vue
+            ├─ index.vue
+            └─ list.vue
+```
+
+## 2.项目使用说明书
+
+### 1)登陆/注册界面
+
+![image-20211221192750264](README.images/image-20211221192750264.png)
+
+点击按钮选择登录或注册，打开网址时会根据当前token判断是否在登录状态，如果在登录状态直接跳转到个人信息页面，否则在登陆后到个人信息页面
+
+### 2）个人信息页面
+
+![image-20211221194102391](README.images/image-20211221194102391.png)
+
+可以修改个人信息并保存
+
+### 3）文章管理页面
+
+![image-20211221194217679](README.images/image-20211221194217679.png)
+
+可以编写文章并发布
+
+![image-20211221194253430](README.images/image-20211221194253430.png)
+
+文章管理，可以编辑或删除已发布的文章
+
+![image-20211221204538627](README.images/image-20211221204538627.png)
+
+评论页面可以查看对文章的评论
+
+![image-20211221204849854](README.images/image-20211221204849854.png)
+
+粉丝关注界面
+
+## 3.开发日记
+
+12-11：初始化项目，学习nodejs各种模块
+
+12-12：学习前端vue框架的使用+后端koa框架的使用
+
+12-13：搭建登陆界面，学习jwt的使用
+
+12-14：编写后台登录，用户信息，文章管理接口
+
+12-15：编写前端各个页面框架，配置路由，完成登录界面，用户界面和文章界面的设计并完成后台接口联调
+
+12-16：完善后台路由，完成粉丝和评论部分接口，前端完成对应界面并修改部分路由
+
+12-20：大体完成项目，完成了docekrfile部署
+
+12-21：完善部分细节
+
+12-22：完善dockerfile，添加缺失文件
+
+# 学习笔记
 
 ## 1.初始化项目
 
@@ -253,5 +477,8 @@ const cors = require('koa2-cors')
 app.use(cors())
 ```
 
+## 6.如何使用dockfile部署
 
+dockerfile以编写完成，前后端分离，前端在vueDocker文件夹，后端在nodeDocker文件夹，只需要将这两个文件夹放到服务器上通过build生成镜像即可
 
+需要注意的是：vueDocker中的dist需要在web文件夹中build生成，生成前要用自己的服务器ip替换掉我的，nodeDocker中的node文件夹同理需要替换ip
