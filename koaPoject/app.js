@@ -32,11 +32,12 @@ app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }))
 
-app.use(koajwt({
-  secret: 'ytking-server-jwt'
-}).unless({
-  path: [/^\/users\/login/,/^\/users\/reg/]
-}))
+//如果要用jwt认证就开启这个，但是有可能会报错
+// app.use(koajwt({
+//   secret: 'ytking-server-jwt'
+// }).unless({
+//   path: [/^\/users\/login/,/^\/users\/reg/]
+// }))
 
 // logger
 app.use(async (ctx, next) => {
